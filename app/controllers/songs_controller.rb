@@ -32,7 +32,6 @@ class SongsController < ApplicationController
 
   def create
     @song = Song.new(song_params)
-
     if @song.save
       redirect_to @song
     else
@@ -47,7 +46,6 @@ class SongsController < ApplicationController
 
       @song = artist.songs.find_by(id: params[:id])
       redirect_to artist_songs_path(artist), alert: "Song not found." if @song.nil?
-      end
     else
       @song = Song.find(params[:id])
     end
