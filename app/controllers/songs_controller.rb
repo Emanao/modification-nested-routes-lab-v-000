@@ -59,12 +59,12 @@ class SongsController < ApplicationController
   end
 
   def update
-    @song = Song.find(params[:id])
+    @song = Song.find_by(id: params[:id])
 
-    if !!@song.update(song_params)
-      redirect_to @song
-    else
+    if @song.nil?
       render :edit
+    else
+      redirect_to @song if !!@song.update(song_params)
     end
   end
 
